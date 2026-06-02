@@ -19,3 +19,4 @@ uvicorn main:app --reload
 cd frontend
 npm install recharts
 npm run dev
+#emr
