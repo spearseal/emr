@@ -47,8 +47,8 @@ export default function Dashboard() {
 
   const fetchKPIs = async () => {
     try {
-      const res = await fetch(\`\${API_URL}/api/kpis\`);
-      if (!res.ok) throw new Error(\`Server error: \${res.status}\`);
+      const res = await fetch(`${API_URL}/api/kpis`);
+      if (!res.ok) throw new Error(`Server error: ${res.status}`);
       const data = await res.json();
       setKpis(data);
     } catch (err) {
@@ -78,10 +78,10 @@ export default function Dashboard() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-          <Card label="Total Leads" value={kpis.total_leads.toLocaleString()} badge={\`+\${kpis.new_leads_this_week} this week\`} accent="blue" />
-          <Card label="Pipeline Value" value={\`\$${kpis.pipeline_value.toLocaleString()}\`} badge={\`\${kpis.deals_won} deals won\`} accent="emerald" />
-          <Card label="Appointments" value={kpis.appointments_booked.toString()} badge={\`\${showRate}% show rate\`} accent="violet" />
-          <Card label="Conversion Rate" value={\`\${(kpis.conversion_rate * 100).toFixed(1)}%\`} badge="Lead → Closed" accent="amber" />
+          <Card label="Total Leads" value={kpis.total_leads.toLocaleString()} badge={`+${kpis.new_leads_this_week} this week`} accent="blue" />
+          <Card label="Pipeline Value" value={`$${kpis.pipeline_value.toLocaleString()}`} badge={`${kpis.deals_won} deals won`} accent="emerald" />
+          <Card label="Appointments" value={kpis.appointments_booked.toString()} badge={`${showRate}% show rate`} accent="violet" />
+          <Card label="Conversion Rate" value={`${(kpis.conversion_rate * 100).toFixed(1)}%`} badge="Lead → Closed" accent="amber" />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -125,7 +125,7 @@ function Card({ label, value, badge, accent }: {
     amber: 'border-amber-200 bg-amber-50 text-amber-900',
   };
   return (
-    <div className={\`rounded-xl border p-5 \${accents[accent]}\`}>
+    <div className={`rounded-xl border p-5 ${accents[accent]}`}>
       <p className="text-sm font-medium opacity-80">{label}</p>
       <p className="text-2xl font-bold mt-1">{value}</p>
       <p className="text-xs font-medium mt-2 opacity-70">{badge}</p>
@@ -144,7 +144,7 @@ function FunnelBar({ label, value, max, color }: {
         <span>{value.toLocaleString()} <span className="text-gray-400">({pct.toFixed(0)}%)</span></span>
       </div>
       <div className="w-full bg-gray-100 rounded-full h-2.5">
-        <div className={\`\${color} h-2.5 rounded-full transition-all duration-700\`} style={{ width: \`\${pct}%\` }} />
+        <div className={`${color} h-2.5 rounded-full transition-all duration-700`} style={{ width: `${pct}%` }} />
       </div>
     </div>
   );
